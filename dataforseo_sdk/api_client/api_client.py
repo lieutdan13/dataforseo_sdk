@@ -19,4 +19,4 @@ class APIClient:
     c = client
 
     def get(self, endpoint):
-        return self.client.get(f"{self.api_version}/{endpoint}")
+        return self.client.get(f"/{self.api_version}/{endpoint}")

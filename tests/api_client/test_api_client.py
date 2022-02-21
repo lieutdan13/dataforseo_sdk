@@ -51,7 +51,7 @@ class TestAPIClient(TestCase):
 
         result = api_client.get(endpoint)
 
-        mock_client_instance.get.assert_called_with(f"{self.api_version}/{endpoint}")
+        mock_client_instance.get.assert_called_with(f"/{self.api_version}/{endpoint}")
         assert result == LANGUAGES_AND_LOCATIONS_RESPONSE
 
 
