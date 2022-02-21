@@ -144,12 +144,15 @@ class TestLocationService(TestCase):
 
         location_service = LocationService()
 
-        locations = location_service.locations_and_languages()
+        # Call twice to ensure memoization
+        location_service.locations_and_languages
+        locations = location_service.locations_and_languages
 
         assert locations[LOCATION_CODE__AUSTRALIA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][0]
         assert locations[LOCATION_CODE__AUSTRIA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][1]
         assert locations[LOCATION_CODE__CANADA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][2]
         assert locations[LOCATION_CODE__UNITED_STATES] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][3]
+        mock_rest_client.get.assert_called_once()
 
     @patch("dataforseo_sdk.api_client.api_client.RestClient")
     def test_locales(self, mock_rest_client_class):
@@ -159,9 +162,7 @@ class TestLocationService(TestCase):
 
         location_service = LocationService()
 
-        locales = location_service.locales()
-
-        assert locales == {
+        assert location_service.locales == {
             "en_au": (LOCATION_CODE__AUSTRALIA, "en", "AU"),
             "de_at": (LOCATION_CODE__AUSTRIA, "de", "AT"),
             "en_ca": (LOCATION_CODE__CANADA, "en", "CA"),

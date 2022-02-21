@@ -8,25 +8,28 @@ class LocationService:
     def __init__(self):
         self.creds = APICredentialsFactory.credentials_from_environment()
         self.client = APIClient(credentials=self.creds)
+        self._locations_and_languages = None
+        self._locales = None
 
-
+    @property
     def locations_and_languages(self):
-        results = self.client.get(self.API_ENDPOINT)
-        locations = {}
-        for location in results["tasks"][0]["result"]:
-            locations[location["location_code"]] = location
-        return locations
+        if self._locations_and_languages is None:
+            results = self.client.get(self.API_ENDPOINT)
+            self._locations_and_languages = {}
+            for location in results["tasks"][0]["result"]:
+                self._locations_and_languages[location["location_code"]] = location
+        return self._locations_and_languages
 
+    @property
     def locales(self):
-        locations = self.locations_and_languages()
-
-        locales = {}
-        for location_code, location in locations.items():
-            for language in location["available_languages"]:
-                locale = f"{language['language_code']}_{location['country_iso_code']}".lower()
-                locales[locale] = (
-                    location_code,
-                    language['language_code'],
-                    location['country_iso_code'],
-                )
-        return locales
+        if self._locales is None:
+            self._locales = {}
+            for location_code, location in self.locations_and_languages.items():
+                for language in location["available_languages"]:
+                    locale = f"{language['language_code']}_{location['country_iso_code']}".lower()
+                    self._locales[locale] = (
+                        location_code,
+                        language['language_code'],
+                        location['country_iso_code'],
+                    )
+        return self._locales
