@@ -150,3 +150,22 @@ class TestLocationService(TestCase):
         assert locations[LOCATION_CODE__AUSTRIA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][1]
         assert locations[LOCATION_CODE__CANADA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][2]
         assert locations[LOCATION_CODE__UNITED_STATES] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][3]
+
+    @patch("dataforseo_sdk.api_client.api_client.RestClient")
+    def test_locales(self, mock_rest_client_class):
+        mock_rest_client = MagicMock()
+        mock_rest_client.get.return_value = MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES
+        mock_rest_client_class.return_value = mock_rest_client
+
+        location_service = LocationService()
+
+        locales = location_service.locales()
+
+        assert locales == {
+            "en_au": (LOCATION_CODE__AUSTRALIA, "en", "AU"),
+            "de_at": (LOCATION_CODE__AUSTRIA, "de", "AT"),
+            "en_ca": (LOCATION_CODE__CANADA, "en", "CA"),
+            "fr_ca": (LOCATION_CODE__CANADA, "fr", "CA"),
+            "en_us": (LOCATION_CODE__UNITED_STATES, "en", "US"),
+            "es_us": (LOCATION_CODE__UNITED_STATES, "es", "US"),
+        }
