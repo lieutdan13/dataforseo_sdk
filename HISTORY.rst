@@ -2,7 +2,8 @@
 History
 =======
 
-0.1.0 (2022-02-11)
+0.1.0 (2022-02-21)
 ------------------
 
-* First release on PyPI.
+* First release
+* Add an API client to wrap the Data for SEO RestClient
