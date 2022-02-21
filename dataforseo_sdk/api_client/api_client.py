@@ -20,3 +20,6 @@ class APIClient:
 
     def get(self, endpoint):
         return self.client.get(f"/{self.api_version}/{endpoint}")
+
+    def post(self, endpoint, data):
+        return self.client.post(f"/{self.api_version}/{endpoint}", data)
