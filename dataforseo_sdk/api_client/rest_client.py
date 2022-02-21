@@ -3,9 +3,11 @@ from base64 import b64encode
 from json import loads
 from json import dumps
 
+
 class RestClient:
     """This Client was taken from the Data for SEO Python Simple Rest Client.
     https://cdn.dataforseo.com/v3/examples/python/python_Client.zip?2022221"""
+
     domain = "api.dataforseo.com"
 
     def __init__(self, username, password):

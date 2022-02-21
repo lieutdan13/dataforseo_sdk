@@ -1,5 +1,6 @@
 from .rest_client import RestClient
 
+
 class APIClient:
     def __init__(self, credentials, api_version="v3"):
         self.credentials = credentials
@@ -10,7 +11,9 @@ class APIClient:
     @property
     def client(self):
         if not self._client:
-            self._client = RestClient(self.credentials.username, self.credentials.password)
+            self._client = RestClient(
+                self.credentials.username, self.credentials.password
+            )
         return self._client
 
     c = client

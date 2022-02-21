@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from dataforseo_sdk.api_client.api_credentials import APICredentials
 
-class TestAPICredentials(TestCase):
 
+class TestAPICredentials(TestCase):
     def test_instantiate(self):
         username = "username"
         password = "password"

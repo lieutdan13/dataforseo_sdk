@@ -3,6 +3,7 @@ from unittest.mock import patch
 
 from dataforseo_sdk.api_client.api_credentials_factory import APICredentialsFactory
 
+
 class TestAPICredentialsFactory(TestCase):
     @patch("dataforseo_sdk.api_client.api_credentials_factory.os")
     def test_credentials_from_environment(self, mock_os):
@@ -21,13 +22,17 @@ class TestAPICredentialsFactory(TestCase):
             APICredentialsFactory.credentials_from_environment()
 
     @patch("dataforseo_sdk.api_client.api_credentials_factory.os")
-    def test_credentials_from_environment__missing_username_raises_keyerror(self, mock_os):
+    def test_credentials_from_environment__missing_username_raises_keyerror(
+        self, mock_os
+    ):
         mock_os.environ = {"DFS_API_USERNAME": "test"}
         with self.assertRaises(KeyError):
             APICredentialsFactory.credentials_from_environment()
 
     @patch("dataforseo_sdk.api_client.api_credentials_factory.os")
-    def test_credentials_from_environment__missing_password_raises_keyerror(self, mock_os):
+    def test_credentials_from_environment__missing_password_raises_keyerror(
+        self, mock_os
+    ):
         mock_os.environ = {"DFS_API_PASSWORD": "test"}
         with self.assertRaises(KeyError):
             APICredentialsFactory.credentials_from_environment()

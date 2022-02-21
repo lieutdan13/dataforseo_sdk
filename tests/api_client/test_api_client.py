@@ -26,7 +26,6 @@ LANGUAGES_AND_LOCATIONS_RESPONSE = """[
 
 
 class TestAPIClient(TestCase):
-
     def setUp(self):
         username = "username"
         password = "password"
