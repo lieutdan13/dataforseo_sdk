@@ -935,7 +935,7 @@ MOCK_VALID_RESPONSE_DOMAIN_COMPETITORS = {
                                 "local_pack": None,
                                 "featured_snippet": None,
                             },
-                        }
+                        },
                     ],
                 }
             ],

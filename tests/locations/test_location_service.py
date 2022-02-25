@@ -25,15 +25,8 @@ MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES = {
             "time": "0 sec.",
             "cost": 0,
             "result_count": 91,
-            "path": [
-                "v3",
-                "dataforseo_labs",
-                "locations_and_languages"
-            ],
-            "data": {
-                "api": "dataforseo_labs",
-                "function": "locations_and_languages"
-            },
+            "path": ["v3", "dataforseo_labs", "locations_and_languages"],
+            "data": {"api": "dataforseo_labs", "function": "locations_and_languages"},
             "result": [
                 {
                     "location_code": LOCATION_CODE__AUSTRALIA,
@@ -43,16 +36,13 @@ MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES = {
                     "location_type": "Country",
                     "available_languages": [
                         {
-                            "available_sources": [
-                                "google",
-                                "bing"
-                            ],
+                            "available_sources": ["google", "bing"],
                             "language_name": "English",
                             "language_code": "en",
                             "keywords": 196283373,
-                            "serps": 14975687
+                            "serps": 14975687,
                         }
-                    ]
+                    ],
                 },
                 {
                     "location_code": LOCATION_CODE__AUSTRIA,
@@ -62,16 +52,13 @@ MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES = {
                     "location_type": "Country",
                     "available_languages": [
                         {
-                            "available_sources": [
-                                "google",
-                                "bing"
-                            ],
+                            "available_sources": ["google", "bing"],
                             "language_name": "German",
                             "language_code": "de",
                             "keywords": 43697801,
-                            "serps": 2852838
+                            "serps": 2852838,
                         }
-                    ]
+                    ],
                 },
                 {
                     "location_code": LOCATION_CODE__CANADA,
@@ -81,26 +68,20 @@ MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES = {
                     "location_type": "Country",
                     "available_languages": [
                         {
-                            "available_sources": [
-                                "google",
-                                "bing"
-                            ],
+                            "available_sources": ["google", "bing"],
                             "language_name": "English",
                             "language_code": "en",
                             "keywords": 221233655,
-                            "serps": 15535562
+                            "serps": 15535562,
                         },
                         {
-                            "available_sources": [
-                                "google",
-                                "bing"
-                            ],
+                            "available_sources": ["google", "bing"],
                             "language_name": "French",
                             "language_code": "fr",
                             "keywords": 115305083,
-                            "serps": 8069200
-                        }
-                    ]
+                            "serps": 8069200,
+                        },
+                    ],
                 },
                 {
                     "location_code": LOCATION_CODE__UNITED_STATES,
@@ -110,30 +91,26 @@ MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES = {
                     "location_type": "Country",
                     "available_languages": [
                         {
-                            "available_sources": [
-                                "google",
-                                "bing"
-                            ],
+                            "available_sources": ["google", "bing"],
                             "language_name": "English",
                             "language_code": "en",
                             "keywords": 854895220,
-                            "serps": 189902351
+                            "serps": 189902351,
                         },
                         {
-                            "available_sources": [
-                                "google"
-                            ],
+                            "available_sources": ["google"],
                             "language_name": "Spanish",
                             "language_code": "es",
                             "keywords": 100715022,
-                            "serps": 5640792
-                        }
-                    ]
-                }
-            ]
+                            "serps": 5640792,
+                        },
+                    ],
+                },
+            ],
         }
-    ]
+    ],
 }
+
 
 class TestLocationService(TestCase):
     @patch("dataforseo_sdk.api_client.api_client.RestClient")
@@ -148,10 +125,22 @@ class TestLocationService(TestCase):
         location_service.locations_and_languages
         locations = location_service.locations_and_languages
 
-        assert locations[LOCATION_CODE__AUSTRALIA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][0]
-        assert locations[LOCATION_CODE__AUSTRIA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][1]
-        assert locations[LOCATION_CODE__CANADA] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][2]
-        assert locations[LOCATION_CODE__UNITED_STATES] == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][3]
+        assert (
+            locations[LOCATION_CODE__AUSTRALIA]
+            == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][0]
+        )
+        assert (
+            locations[LOCATION_CODE__AUSTRIA]
+            == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][1]
+        )
+        assert (
+            locations[LOCATION_CODE__CANADA]
+            == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][2]
+        )
+        assert (
+            locations[LOCATION_CODE__UNITED_STATES]
+            == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][3]
+        )
         mock_rest_client.get.assert_called_once()
 
     @patch("dataforseo_sdk.api_client.api_client.RestClient")

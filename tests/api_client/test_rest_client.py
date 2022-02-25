@@ -6,10 +6,12 @@ from unittest.mock import MagicMock, Mock, patch
 
 from dataforseo_sdk.api_client.rest_client import RestClient
 
-class TestRestClient(TestCase):
 
+class TestRestClient(TestCase):
     def setUp(self) -> None:
-        self.data_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data")
+        self.data_dir = os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "data"
+        )
         self.response_file = None
         return super().setUp()
 
@@ -25,7 +27,6 @@ class TestRestClient(TestCase):
         self.mock_https_connection.getresponse.return_value = self.mock_http_response
         mock_https_connection_class.return_value = self.mock_https_connection
 
-
     @patch("dataforseo_sdk.api_client.rest_client.HTTPSConnection")
     def test_request(self, mock_https_connection_class):
         response_json = b'{"test": "message"}'
@@ -37,7 +38,6 @@ class TestRestClient(TestCase):
         response = rest_client.request(endpoint, "GET")
 
         assert response == expected_response
-
 
     @patch("dataforseo_sdk.api_client.rest_client.datetime")
     @patch("dataforseo_sdk.api_client.rest_client.HTTPSConnection")
@@ -51,7 +51,9 @@ class TestRestClient(TestCase):
         mock_datetime.datetime.now.return_value = mock_now
         endpoint = "/v3/my_endpoint"
         slug_endpoint = "v3-my_endpoint"
-        self.response_file = os.path.join(self.data_dir, f"{expected_domain_name}.{slug_endpoint}.{date_str}.json")
+        self.response_file = os.path.join(
+            self.data_dir, f"{expected_domain_name}.{slug_endpoint}.{date_str}.json"
+        )
 
         rest_client = RestClient("username", "password", requests_log_dir=self.data_dir)
         rest_client.domain = expected_domain_name

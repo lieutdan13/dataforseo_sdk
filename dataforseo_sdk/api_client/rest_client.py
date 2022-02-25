@@ -2,14 +2,13 @@ import datetime
 import os
 import re
 
-from http.client import HTTPSConnection
 from base64 import b64encode
-from json import loads
-from json import dumps
+from http.client import HTTPSConnection
+from json import dumps, loads
 
 from slugify import slugify
 
-ALLOWED_SLUG_CHARS = re.compile(r'[^-_a-zA-Z0-9]+')
+ALLOWED_SLUG_CHARS = re.compile(r"[^-_a-zA-Z0-9]+")
 
 
 class RestClient:
@@ -29,7 +28,6 @@ class RestClient:
         file_name = f"{self.domain}.{slugify(endpoint, regex_pattern=ALLOWED_SLUG_CHARS)}.{date_str}.json"
         return os.path.join(self.requests_log_dir, file_name)
 
-
     def _maybe_create_response_file(self, endpoint, response_json):
         if self.requests_log_dir:
             file_path = self._generate_file_path_for_request(endpoint=endpoint)
@@ -41,8 +39,11 @@ class RestClient:
         try:
             base64_bytes = b64encode(
                 ("%s:%s" % (self.username, self.password)).encode("ascii")
-                ).decode("ascii")
-            headers = {'Authorization' : 'Basic %s' %  base64_bytes, 'Content-Encoding' : 'gzip'}
+            ).decode("ascii")
+            headers = {
+                "Authorization": "Basic %s" % base64_bytes,
+                "Content-Encoding": "gzip",
+            }
             connection.request(method, path, headers=headers, body=data)
             response = connection.getresponse()
             response_json = response.read().decode()
@@ -53,11 +54,11 @@ class RestClient:
             connection.close()
 
     def get(self, path):
-        return self.request(path, 'GET')
+        return self.request(path, "GET")
 
     def post(self, path, data):
         if isinstance(data, str):
             data_str = data
         else:
             data_str = dumps(data)
-        return self.request(path, 'POST', data_str)
+        return self.request(path, "POST", data_str)

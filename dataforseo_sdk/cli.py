@@ -11,7 +11,9 @@ class CLI:
         args = parser.parse_args()
 
         print("Arguments: " + str(args._))
-        print("Replace this message by putting your code into " "dataforseo_sdk.cli.main")
+        print(
+            "Replace this message by putting your code into " "dataforseo_sdk.cli.main"
+        )
         return 0
 
 
