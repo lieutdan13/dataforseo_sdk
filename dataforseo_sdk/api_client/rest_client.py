@@ -31,7 +31,7 @@ class RestClient:
     def _maybe_create_response_file(self, endpoint, response_json):
         if self.requests_log_dir:
             file_path = self._generate_file_path_for_request(endpoint=endpoint)
-            with open(file_path, "w+") as fh:
+            with open(file_path, "w+", encoding='utf-8') as fh:
                 fh.write(response_json)
 
     def request(self, path, method, data=None):
