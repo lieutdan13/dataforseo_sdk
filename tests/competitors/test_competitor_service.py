@@ -955,7 +955,7 @@ class TestCompetitorService(TestCase):
         competitor_service = CompetitorService()
 
         domain_competitors = competitor_service.domain_competitors(
-            target_domains=[target_domain]
+            target_domain=target_domain
         )
 
         assert domain_competitors == MOCK_VALID_RESPONSE_DOMAIN_COMPETITORS
