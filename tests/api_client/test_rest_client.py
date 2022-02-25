@@ -16,8 +16,8 @@ class TestRestClient(TestCase):
         return super().setUp()
 
     def tearDown(self) -> None:
-        # if self.response_file is not None and os.path.isfile(self.response_file):
-        #     os.remove(self.response_file)
+        if self.response_file is not None and os.path.isfile(self.response_file):
+            os.remove(self.response_file)
         return super().tearDown()
 
     def setup_mocking(self, mock_https_connection_class, response_json):
