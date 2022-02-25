@@ -2,7 +2,7 @@
 History
 =======
 
-0.1.0 (2022-02-21)
+0.1.0 (2022-02-25)
 ------------------
 
 * First release
@@ -11,3 +11,4 @@ History
 ** DFS_API_USERNAME and DFS_API_PASSWORD
 * Add service to get locations and languages
 * Add service to get domain competitors
+* Add feature to save requests as files
