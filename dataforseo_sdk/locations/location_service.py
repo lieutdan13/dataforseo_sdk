@@ -1,3 +1,4 @@
+from dataforseo_sdk.config import Config
 from dataforseo_sdk.api_client.api_client import APIClient
 from dataforseo_sdk.api_client.api_credentials_factory import APICredentialsFactory
 
@@ -7,7 +8,7 @@ class LocationService:
 
     def __init__(self):
         self.creds = APICredentialsFactory.credentials_from_environment()
-        self.client = APIClient(credentials=self.creds)
+        self.client = APIClient(credentials=self.creds, data_dir=Config().data_dir)
         self._locations_and_languages = None
         self._locales = None
 
