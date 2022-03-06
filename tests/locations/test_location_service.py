@@ -1,3 +1,4 @@
+import os
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
@@ -111,8 +112,15 @@ MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES = {
     ],
 }
 
+TEST_API_USERNAME = "username"
+TEST_API_PASSWORD = "api_key"
+
 
 class TestLocationService(TestCase):
+    def setUp(self):
+        os.environ["DFS_API_USERNAME"] = TEST_API_USERNAME
+        os.environ["DFS_API_PASSWORD"] = TEST_API_PASSWORD
+
     @patch("dataforseo_sdk.api_client.api_client.RestClient")
     def test_locations_and_languages(self, mock_rest_client_class):
         mock_rest_client = MagicMock()

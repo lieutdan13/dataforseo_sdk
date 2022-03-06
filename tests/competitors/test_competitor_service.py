@@ -1,3 +1,4 @@
+import os
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
@@ -943,8 +944,15 @@ MOCK_VALID_RESPONSE_DOMAIN_COMPETITORS = {
     ],
 }
 
+TEST_API_USERNAME = "username"
+TEST_API_PASSWORD = "api_key"
+
 
 class TestCompetitorService(TestCase):
+    def setUp(self):
+        os.environ["DFS_API_USERNAME"] = TEST_API_USERNAME
+        os.environ["DFS_API_PASSWORD"] = TEST_API_PASSWORD
+
     @patch("dataforseo_sdk.competitors.competitor_service.APIClient")
     def test_domain_competitors(self, mock_rest_client_class):
         mock_rest_client = MagicMock()
