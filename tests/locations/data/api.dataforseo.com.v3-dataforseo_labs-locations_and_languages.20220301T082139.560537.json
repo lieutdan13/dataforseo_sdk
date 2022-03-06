@@ -1,0 +1,101 @@
+{
+    "version": "0.1.20220216",
+    "status_code": 20000,
+    "status_message": "Ok.",
+    "time": "0.2478 sec.",
+    "cost": 0,
+    "tasks_count": 1,
+    "tasks_error": 0,
+    "tasks": [
+        {
+            "id": "02211752-3334-0196-0000-d7d2ec33f81d",
+            "status_code": 20000,
+            "status_message": "Ok.",
+            "time": "0 sec.",
+            "cost": 0,
+            "result_count": 91,
+            "path": ["v3", "dataforseo_labs", "locations_and_languages"],
+            "data": {"api": "dataforseo_labs", "function": "locations_and_languages"},
+            "result": [
+                {
+                    "location_code": 2036,
+                    "location_name": "Australia",
+                    "location_code_parent": null,
+                    "country_iso_code": "AU",
+                    "location_type": "Country",
+                    "available_languages": [
+                        {
+                            "available_sources": ["google", "bing"],
+                            "language_name": "English",
+                            "language_code": "en",
+                            "keywords": 196283373,
+                            "serps": 14975687
+                        }
+                    ]
+                },
+                {
+                    "location_code": 2040,
+                    "location_name": "Austria",
+                    "location_code_parent": null,
+                    "country_iso_code": "AT",
+                    "location_type": "Country",
+                    "available_languages": [
+                        {
+                            "available_sources": ["google", "bing"],
+                            "language_name": "German",
+                            "language_code": "de",
+                            "keywords": 43697801,
+                            "serps": 2852838
+                        }
+                    ]
+                },
+                {
+                    "location_code": 2124,
+                    "location_name": "Canada",
+                    "location_code_parent": null,
+                    "country_iso_code": "CA",
+                    "location_type": "Country",
+                    "available_languages": [
+                        {
+                            "available_sources": ["google", "bing"],
+                            "language_name": "English",
+                            "language_code": "en",
+                            "keywords": 221233655,
+                            "serps": 15535562
+                        },
+                        {
+                            "available_sources": ["google", "bing"],
+                            "language_name": "French",
+                            "language_code": "fr",
+                            "keywords": 115305083,
+                            "serps": 8069200
+                        }
+                    ]
+                },
+                {
+                    "location_code": 2840,
+                    "location_name": "United States",
+                    "location_code_parent": null,
+                    "country_iso_code": "US",
+                    "location_type": "Country",
+                    "available_languages": [
+                        {
+                            "available_sources": ["google", "bing"],
+                            "language_name": "English",
+                            "language_code": "en",
+                            "keywords": 854895220,
+                            "serps": 189902351
+                        },
+                        {
+                            "available_sources": ["google"],
+                            "language_name": "Spanish",
+                            "language_code": "es",
+                            "keywords": 100715022,
+                            "serps": 5640792
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

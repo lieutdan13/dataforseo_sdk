@@ -127,7 +127,7 @@ class TestLocationService(TestCase):
         mock_rest_client.get.return_value = MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES
         mock_rest_client_class.return_value = mock_rest_client
 
-        location_service = LocationService()
+        location_service = LocationService(data_dir="not-a-directory")
 
         # Call twice to ensure memoization
         location_service.locations_and_languages
@@ -149,15 +149,37 @@ class TestLocationService(TestCase):
             locations[LOCATION_CODE__UNITED_STATES]
             == MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES["tasks"][0]["result"][3]
         )
-        mock_rest_client.get.assert_called_once()
+
+    def test_locations_and_languages__loaded_from_file(self):
+        data_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), "data"))
+
+        location_service = LocationService(data_dir=data_dir)
+        locations = location_service.locations_and_languages
+
+        assert len(locations) == 4
+        assert (
+            locations[LOCATION_CODE__AUSTRALIA]["location_code"]
+            == LOCATION_CODE__AUSTRALIA
+        )
+        assert (
+            locations[LOCATION_CODE__AUSTRIA]["location_code"] == LOCATION_CODE__AUSTRIA
+        )
+        assert (
+            locations[LOCATION_CODE__CANADA]["location_code"] == LOCATION_CODE__CANADA
+        )
+        assert (
+            locations[LOCATION_CODE__UNITED_STATES]["location_code"]
+            == LOCATION_CODE__UNITED_STATES
+        )
 
     @patch("dataforseo_sdk.api_client.api_client.RestClient")
     def test_locales(self, mock_rest_client_class):
+        data_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), "data"))
         mock_rest_client = MagicMock()
         mock_rest_client.get.return_value = MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES
         mock_rest_client_class.return_value = mock_rest_client
 
-        location_service = LocationService()
+        location_service = LocationService(data_dir=data_dir)
 
         assert location_service.locales == {
             "en_au": (LOCATION_CODE__AUSTRALIA, "en", "AU"),
