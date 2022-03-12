@@ -953,7 +953,7 @@ class TestCompetitorService(TestCase):
         os.environ["DFS_API_USERNAME"] = TEST_API_USERNAME
         os.environ["DFS_API_PASSWORD"] = TEST_API_PASSWORD
 
-    @patch("dataforseo_sdk.competitors.competitor_service.APIClient")
+    @patch("dataforseo_sdk.api_client.api_client_mixin.APIClient")
     def test_domain_competitors(self, mock_rest_client_class):
         mock_rest_client = MagicMock()
         mock_rest_client.post.return_value = MOCK_VALID_RESPONSE_DOMAIN_COMPETITORS

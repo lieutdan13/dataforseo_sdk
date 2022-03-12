@@ -1,17 +1,8 @@
-from dataforseo_sdk.api_client.api_client import APIClient
-from dataforseo_sdk.api_client.api_credentials_factory import APICredentialsFactory
-from dataforseo_sdk.config import Config
-from dataforseo_sdk.locations.location_service import LocationService
+from dataforseo_sdk.api_client.api_client_mixin import APIClientMixin
 
 
-class KeywordService:
+class KeywordService(APIClientMixin):
     API_ENDPOINT = "dataforseo_labs/ranked_keywords/live"
-
-    def __init__(self):
-        self.creds = APICredentialsFactory.credentials_from_environment()
-        self.client = APIClient(credentials=self.creds)
-        locale = LocationService().locales[Config().locale]
-        self.location_code, self.language_code, _ = locale
 
     def ranked_keywords(self, target_domain):
         post_data = [
