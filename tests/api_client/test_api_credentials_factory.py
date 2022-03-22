@@ -36,3 +36,14 @@ class TestAPICredentialsFactory(TestCase):
         mock_os.environ = {"DFS_API_PASSWORD": "test"}
         with self.assertRaises(KeyError):
             APICredentialsFactory.credentials_from_environment()
+
+    @patch("dataforseo_sdk.api_client.api_credentials_factory.Config")
+    def test_credentials_from_config(self, mock_config):
+        username = "api_username"
+        password = "api_password"
+        mock_config.config = {"api_username": username, "api_password": password}
+
+        credentials = APICredentialsFactory.credentials_from_config()
+
+        assert credentials.username == username
+        assert credentials.password == password
