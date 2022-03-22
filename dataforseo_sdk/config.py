@@ -1,9 +1,16 @@
 import os
+from typing import Any
+
+from ultra_config import GlobalConfig as Config
+
+ENV_VAR_PREFIX = "DFS"
 
 
-class Config:
-    def __init__(self):
-        self.data_dir = os.environ.get("DFS_DATA_DIR") or os.path.realpath(
-            os.path.join(os.path.dirname(os.path.realpath(__file__)), "_data")
-        )
-        self.locale = os.environ.get("DFS_LOCALE") or "en_us"
+class DefaultConfig:
+    data_dir = os.path.realpath(
+        os.path.join(os.path.dirname(os.path.realpath(__file__)), "_data")
+    )
+    locale = "en_us"
+
+
+Config.load(default_settings=DefaultConfig, env_var_prefix=ENV_VAR_PREFIX)

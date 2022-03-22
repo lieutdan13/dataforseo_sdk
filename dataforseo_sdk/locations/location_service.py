@@ -14,7 +14,7 @@ class LocationService:
     )
 
     def __init__(self, data_dir=None):
-        self.data_dir = data_dir or Config().data_dir
+        self.data_dir = data_dir or Config.config["data_dir"]
         self.creds = APICredentialsFactory.credentials_from_environment()
         self.client = APIClient(credentials=self.creds, data_dir=self.data_dir)
         self._locations_and_languages = None

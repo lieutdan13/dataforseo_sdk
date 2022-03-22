@@ -6,7 +6,7 @@ class APIClient:
     def __init__(self, credentials, api_version="v3", data_dir=None):
         self.credentials = credentials
         self.api_version = api_version
-        self.data_dir = data_dir or Config().data_dir
+        self.data_dir = data_dir or Config.config["data_dir"]
 
         self._client = None
 

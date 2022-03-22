@@ -29,11 +29,8 @@ class APIClientMixin:
 
     def _set_locale(self):
         location_service = LocationService()
-        self.locale = location_service.locales[Config().locale]
+        self.locale = location_service.locales[Config.config["locale"]]
         self.location_code, self.language_code, self.country_iso_code = self.locale
 
     def _set_data_dir(self, data_dir=None):
-        if data_dir:
-            self.data_dir = data_dir
-        else:
-            self.data_dir = Config().data_dir
+        self.data_dir = data_dir or Config.config["data_dir"]

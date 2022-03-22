@@ -75,16 +75,6 @@ class TestAPIClientMixin(TestCase):
 
         assert api_client_mixer.data_dir == data_dir
 
-    @patch("dataforseo_sdk.api_client.api_client_mixin.LocationService")
-    def test_instantiate__data_dir_from_environment(self, mock_location_service):
-        self.mock_location_service(mock_location_service)
-        data_dir_from_env = "/tmp/path/to/data/from/env"
-        os.environ["DFS_DATA_DIR"] = data_dir_from_env
-
-        api_client_mixer = MockAPIClientMixer()
-
-        assert api_client_mixer.data_dir == data_dir_from_env
-
 
 class MockAPIClientMixer(APIClientMixin):
     pass
