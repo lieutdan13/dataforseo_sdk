@@ -12,9 +12,7 @@ with open("HISTORY.rst") as history_file:
 
 requirements = ["python-slugify<7.0", "ultra-config==0.6.3"]
 
-test_requirements = [
-    "pytest>=3",
-]
+test_requirements = ["pytest==6.2.5", "pytest-cov==3.0.0"]
 
 setup(
     author="Daniel Schaefer",
