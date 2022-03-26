@@ -13,9 +13,11 @@ class LocationService:
         r"api\.dataforseo\.com\.v3-dataforseo_labs-locations_and_languages.*\.json"
     )
 
-    def __init__(self, data_dir=None):
+    def __init__(self, data_dir=None, **kwargs):
         self.data_dir = data_dir or Config.config["data_dir"]
-        self.creds = APICredentialsFactory.credentials_from_environment()
+        self.creds = (
+            kwargs.get("credentials") or APICredentialsFactory.credentials_from_config()
+        )
         self.client = APIClient(credentials=self.creds, data_dir=self.data_dir)
         self._locations_and_languages = None
         self._locales = None

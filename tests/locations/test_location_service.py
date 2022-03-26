@@ -2,6 +2,7 @@ import os
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
+from dataforseo_sdk.api_client.api_credentials import APICredentials
 from dataforseo_sdk.locations.location_service import LocationService
 
 STATUS_CODE_OK = 20000
@@ -118,8 +119,12 @@ TEST_API_PASSWORD = "api_key"
 
 class TestLocationService(TestCase):
     def setUp(self):
-        os.environ["DFS_API_USERNAME"] = TEST_API_USERNAME
-        os.environ["DFS_API_PASSWORD"] = TEST_API_PASSWORD
+        self.credentials = APICredentials(
+            username=TEST_API_USERNAME, password=TEST_API_PASSWORD
+        )
+        self.data_dir = os.path.realpath(
+            os.path.join(os.path.dirname(__file__), "data")
+        )
 
     @patch("dataforseo_sdk.api_client.api_client.RestClient")
     def test_locations_and_languages(self, mock_rest_client_class):
@@ -127,7 +132,9 @@ class TestLocationService(TestCase):
         mock_rest_client.get.return_value = MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES
         mock_rest_client_class.return_value = mock_rest_client
 
-        location_service = LocationService(data_dir="not-a-directory")
+        location_service = LocationService(
+            data_dir="not-a-directory", credentials=self.credentials
+        )
 
         # Call twice to ensure memoization
         location_service.locations_and_languages
@@ -151,9 +158,9 @@ class TestLocationService(TestCase):
         )
 
     def test_locations_and_languages__loaded_from_file(self):
-        data_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), "data"))
-
-        location_service = LocationService(data_dir=data_dir)
+        location_service = LocationService(
+            data_dir=self.data_dir, credentials=self.credentials
+        )
         locations = location_service.locations_and_languages
 
         assert len(locations) == 4
@@ -174,12 +181,13 @@ class TestLocationService(TestCase):
 
     @patch("dataforseo_sdk.api_client.api_client.RestClient")
     def test_locales(self, mock_rest_client_class):
-        data_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), "data"))
         mock_rest_client = MagicMock()
         mock_rest_client.get.return_value = MOCK_VALID_RESPONSE_LOCATION_AND_LANGUAGES
         mock_rest_client_class.return_value = mock_rest_client
 
-        location_service = LocationService(data_dir=data_dir)
+        location_service = LocationService(
+            data_dir=self.data_dir, credentials=self.credentials
+        )
 
         assert location_service.locales == {
             "en_au": (LOCATION_CODE__AUSTRALIA, "en", "AU"),

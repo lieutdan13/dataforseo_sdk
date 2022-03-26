@@ -25,10 +25,12 @@ class APIClientMixin:
                 )
             )
         else:
-            self.credentials = APICredentialsFactory.credentials_from_environment()
+            self.credentials = APICredentialsFactory.credentials_from_config()
 
     def _set_locale(self):
-        location_service = LocationService()
+        location_service = LocationService(
+            credentials=self.credentials, data_dir=self.data_dir
+        )
         self.locale = location_service.locales[Config.config["locale"]]
         self.location_code, self.language_code, self.country_iso_code = self.locale
 

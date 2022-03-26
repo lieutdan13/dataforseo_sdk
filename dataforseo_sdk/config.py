@@ -13,4 +13,11 @@ class DefaultConfig:
     locale = "en_us"
 
 
-Config.load(default_settings=DefaultConfig, env_var_prefix=ENV_VAR_PREFIX)
+REQUIRED_CONFIGS = []
+
+
+Config.load(
+    default_settings=DefaultConfig,
+    env_var_prefix=ENV_VAR_PREFIX,
+    required=REQUIRED_CONFIGS,
+)

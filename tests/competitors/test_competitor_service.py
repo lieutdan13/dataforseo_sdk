@@ -1,7 +1,7 @@
-import os
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
+from dataforseo_sdk.api_client.api_credentials import APICredentials
 from dataforseo_sdk.competitors.competitor_service import CompetitorService
 
 
@@ -949,18 +949,17 @@ TEST_API_PASSWORD = "api_key"
 
 
 class TestCompetitorService(TestCase):
-    def setUp(self):
-        os.environ["DFS_API_USERNAME"] = TEST_API_USERNAME
-        os.environ["DFS_API_PASSWORD"] = TEST_API_PASSWORD
-
     @patch("dataforseo_sdk.api_client.api_client_mixin.APIClient")
     def test_domain_competitors(self, mock_rest_client_class):
         mock_rest_client = MagicMock()
         mock_rest_client.post.return_value = MOCK_VALID_RESPONSE_DOMAIN_COMPETITORS
         mock_rest_client_class.return_value = mock_rest_client
+        credentials = APICredentials(
+            username=TEST_API_USERNAME, password=TEST_API_PASSWORD
+        )
 
         target_domain = "afishingaddiction.com"
-        competitor_service = CompetitorService()
+        competitor_service = CompetitorService(credentials=credentials)
 
         domain_competitors = competitor_service.domain_competitors(
             target_domain=target_domain

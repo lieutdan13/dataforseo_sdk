@@ -2,6 +2,7 @@ import os
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
+from dataforseo_sdk.api_client.api_credentials import APICredentials
 from dataforseo_sdk.keywords.keyword_service import KeywordService
 
 RANKED_KEYWORDS_RESPONSE_FILE = os.path.realpath(
@@ -12,6 +13,9 @@ RANKED_KEYWORDS_RESPONSE_FILE = os.path.realpath(
         "api.dataforseo.com.v3-dataforseo_labs-ranked_keywords-live.20220225T163613.078371.json",
     )
 )
+
+TEST_API_USERNAME = "username"
+TEST_API_PASSWORD = "api_key"
 
 
 class TestKeywordService(TestCase):
@@ -27,9 +31,12 @@ class TestKeywordService(TestCase):
         mock_rest_client = MagicMock()
         mock_rest_client.post.return_value = ranked_keywords_test_data
         mock_rest_client_class.return_value = mock_rest_client
+        credentials = APICredentials(
+            username=TEST_API_USERNAME, password=TEST_API_PASSWORD
+        )
 
         target_domain = "afishingaddiction.com"
-        keyword_service = KeywordService()
+        keyword_service = KeywordService(credentials=credentials)
 
         ranked_keywords = keyword_service.ranked_keywords(target_domain=target_domain)
 

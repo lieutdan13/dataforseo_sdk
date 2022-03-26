@@ -7,8 +7,10 @@ History
 
 * First release
 * Add an API client to wrap the Data for SEO RestClient
-* Add ability to get credentials from environment variables
+* Implement configuration from environment variables
 ** DFS_API_USERNAME and DFS_API_PASSWORD
+** DFS_DATA_DIR
+** DFS_LOCALE
 * Add feature to save requests as files
 * Add service to get locations and languages
 * Add service to get domain competitors
