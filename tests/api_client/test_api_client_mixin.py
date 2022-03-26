@@ -58,17 +58,6 @@ class TestAPIClientMixin(TestCase):
 
     @patch("dataforseo_sdk.api_client.api_credentials_factory.Config")
     @patch("dataforseo_sdk.api_client.api_client_mixin.LocationService")
-    def test_instantiate__sets_locale(self, mock_location_service, mock_config):
-        self.mock_location_service(mock_location_service)
-
-        api_client_mixer = MockAPIClientMixer()
-
-        assert api_client_mixer.location_code == self.en_us_location_code
-        assert api_client_mixer.language_code == self.en_us_language_code
-        assert api_client_mixer.country_iso_code == self.en_us_country_iso_code
-
-    @patch("dataforseo_sdk.api_client.api_credentials_factory.Config")
-    @patch("dataforseo_sdk.api_client.api_client_mixin.LocationService")
     def test_instantiate__with_data_dir(self, mock_location_service, mock_config):
         self.mock_location_service(mock_location_service)
         data_dir = "/tmp/path/to/data"

@@ -13,7 +13,6 @@ class APIClientMixin:
             password=kwargs.get("password"),
         )
         self.client = APIClient(credentials=self.credentials)
-        self._set_locale()
 
     def _set_credentials(self, credentials=None, username=None, password=None):
         if credentials:
@@ -26,13 +25,6 @@ class APIClientMixin:
             )
         else:
             self.credentials = APICredentialsFactory.credentials_from_config()
-
-    def _set_locale(self):
-        location_service = LocationService(
-            credentials=self.credentials, data_dir=self.data_dir
-        )
-        self.locale = location_service.locales[Config.config["locale"]]
-        self.location_code, self.language_code, self.country_iso_code = self.locale
 
     def _set_data_dir(self, data_dir=None):
         self.data_dir = data_dir or Config.config["data_dir"]
