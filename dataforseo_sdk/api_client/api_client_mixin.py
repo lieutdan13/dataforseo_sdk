@@ -1,7 +1,6 @@
 from dataforseo_sdk.api_client.api_client import APIClient
 from dataforseo_sdk.api_client.api_credentials_factory import APICredentialsFactory
 from dataforseo_sdk.config import Config
-from dataforseo_sdk.locations.location_service import LocationService
 
 
 class APIClientMixin:

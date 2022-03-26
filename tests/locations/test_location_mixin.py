@@ -49,7 +49,7 @@ class TestLocationMixin(TestCase):
         assert self.mock_location_mixer.location_code == expected_location_code
 
     @patch("dataforseo_sdk.locations.location_mixin.Config")
-    @patch("dataforseo_sdk.api_client.api_client_mixin.LocationService")
+    @patch("dataforseo_sdk.locations.location_mixin.LocationService")
     def test_location_code(self, mock_location_service, mock_config):
         mock_config.config = {"locale": self.en_us_locale}
         self.mock_location_service(mock_location_service)
@@ -63,7 +63,7 @@ class TestLocationMixin(TestCase):
         assert self.mock_location_mixer.language_code == expected_language_code
 
     @patch("dataforseo_sdk.locations.location_mixin.Config")
-    @patch("dataforseo_sdk.api_client.api_client_mixin.LocationService")
+    @patch("dataforseo_sdk.locations.location_mixin.LocationService")
     def test_language_code(self, mock_location_service, mock_config):
         mock_config.config = {"locale": self.en_us_locale}
         self.mock_location_service(mock_location_service)
@@ -77,7 +77,7 @@ class TestLocationMixin(TestCase):
         assert self.mock_location_mixer.country_iso_code == expected_country_iso_code
 
     @patch("dataforseo_sdk.locations.location_mixin.Config")
-    @patch("dataforseo_sdk.api_client.api_client_mixin.LocationService")
+    @patch("dataforseo_sdk.locations.location_mixin.LocationService")
     def test_country_iso_code(self, mock_location_service, mock_config):
         mock_config.config = {"locale": self.en_us_locale}
         self.mock_location_service(mock_location_service)
