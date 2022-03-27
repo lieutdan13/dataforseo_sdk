@@ -5,6 +5,9 @@ from dataforseo_sdk.locations.location_mixin import LocationMixin
 class KeywordService(APIClientMixin, LocationMixin):
     API_ENDPOINT = "dataforseo_labs/ranked_keywords/live"
 
+    def __init__(self, *args, **kwargs):
+        self.init_api_client(**kwargs)
+
     def ranked_keywords(self, target_domain):
         post_data = [
             {

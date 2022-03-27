@@ -5,6 +5,9 @@ from dataforseo_sdk.locations.location_mixin import LocationMixin
 class CompetitorService(APIClientMixin, LocationMixin):
     API_ENDPOINT = "dataforseo_labs/competitors_domain/live"
 
+    def __init__(self, *args, **kwargs):
+        self.init_api_client(**kwargs)
+
     def domain_competitors(self, target_domain):
         post_data = [
             {

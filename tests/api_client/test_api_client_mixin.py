@@ -9,7 +9,8 @@ class TestAPIClientMixin(TestCase):
     def test_instantiate__with_credentials(self):
         credentials = MagicMock(spec=APICredentials)
 
-        api_client_mixer = MockAPIClientMixer(credentials=credentials)
+        api_client_mixer = MockAPIClientMixer()
+        api_client_mixer.init_api_client(credentials=credentials)
 
         assert api_client_mixer.credentials == credentials
 
@@ -17,7 +18,8 @@ class TestAPIClientMixin(TestCase):
         username = "username"
         password = "password"
 
-        api_client_mixer = MockAPIClientMixer(username=username, password=password)
+        api_client_mixer = MockAPIClientMixer()
+        api_client_mixer.init_api_client(username=username, password=password)
 
         assert api_client_mixer.credentials.username == username
         assert api_client_mixer.credentials.password == password
@@ -36,7 +38,8 @@ class TestAPIClientMixin(TestCase):
     def test_instantiate__with_data_dir(self, mock_config):
         data_dir = "/tmp/path/to/data"
 
-        api_client_mixer = MockAPIClientMixer(data_dir=data_dir)
+        api_client_mixer = MockAPIClientMixer()
+        api_client_mixer.init_api_client(data_dir=data_dir)
 
         assert api_client_mixer.data_dir == data_dir
 
