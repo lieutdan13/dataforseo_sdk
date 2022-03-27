@@ -2,23 +2,17 @@ import json
 import os
 import re
 
-from dataforseo_sdk.config import Config
-from dataforseo_sdk.api_client.api_client import APIClient
-from dataforseo_sdk.api_client.api_credentials_factory import APICredentialsFactory
+from dataforseo_sdk.dfs_service import DFSService
 
 
-class LocationService:
+class LocationService(DFSService):
     API_ENDPOINT = "dataforseo_labs/locations_and_languages"
     FILE_PATTERN = (
         r"api\.dataforseo\.com\.v3-dataforseo_labs-locations_and_languages.*\.json"
     )
 
-    def __init__(self, data_dir=None, **kwargs):
-        self.data_dir = data_dir or Config.config["data_dir"]
-        self.creds = (
-            kwargs.get("credentials") or APICredentialsFactory.credentials_from_config()
-        )
-        self.client = APIClient(credentials=self.creds, data_dir=self.data_dir)
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
         self._locations_and_languages = None
         self._locales = None
 
