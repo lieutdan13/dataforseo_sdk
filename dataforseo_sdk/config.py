@@ -11,6 +11,7 @@ class DefaultConfig:
         os.path.join(os.path.dirname(os.path.realpath(__file__)), "_data")
     )
     locale = "en_us"
+    api_domain = "api.dataforseo.com"
 
 
 REQUIRED_CONFIGS = []

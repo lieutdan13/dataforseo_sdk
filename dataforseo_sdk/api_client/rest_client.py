@@ -8,6 +8,8 @@ from json import dumps, loads
 
 from slugify import slugify
 
+from dataforseo_sdk.config import Config
+
 ALLOWED_SLUG_CHARS = re.compile(r"[^-_a-zA-Z0-9]+")
 
 
@@ -15,12 +17,21 @@ class RestClient:
     """This Client was taken from the Data for SEO Python Simple Rest Client.
     https://cdn.dataforseo.com/v3/examples/python/python_Client.zip?2022221"""
 
-    domain = "api.dataforseo.com"
-
     def __init__(self, username, password, requests_log_dir=None):
         self.username = username
         self.password = password
         self.requests_log_dir = requests_log_dir
+        self._domain = None
+
+    @property
+    def domain(self):
+        if not self._domain:
+            self._domain = Config.config["api_domain"]
+        return self._domain
+
+    @domain.setter
+    def domain(self, value):
+        self._domain = value
 
     def _generate_file_path_for_request(self, endpoint):
         now = datetime.datetime.now()

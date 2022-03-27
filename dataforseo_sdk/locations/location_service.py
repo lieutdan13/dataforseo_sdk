@@ -8,7 +8,7 @@ from dataforseo_sdk.dfs_service import DFSService
 class LocationService(DFSService):
     API_ENDPOINT = "dataforseo_labs/locations_and_languages"
     FILE_PATTERN = (
-        r"api\.dataforseo\.com\.v3-dataforseo_labs-locations_and_languages.*\.json"
+        r".*dataforseo\.com\.v3-dataforseo_labs-locations_and_languages.*\.json"
     )
 
     def __init__(self, *args, **kwargs) -> None:
