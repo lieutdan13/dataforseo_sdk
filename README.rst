@@ -37,7 +37,9 @@ TODO
 
    * Usage for environment variables
 
-   * Usage for
+   * Usage for CLI
+
+   * Document classes
 
 * Build documentation locally
 * Publish documentation
