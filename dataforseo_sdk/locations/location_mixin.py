@@ -25,9 +25,12 @@ class LocationMixin:
     @property
     def _location_service(self):
         if not getattr(self, "__location_service", None):
-            self.__location_service = LocationService(
-                credentials=self.__credentials, data_dir=self.__data_dir
-            )
+            kwargs = dict(data_dir=self.__data_dir)
+            if getattr(self, "client", None):
+                kwargs["client"] = self.client
+            else:
+                kwargs["credentials"] = self.__credentials
+            self.__location_service = LocationService(**kwargs)
         return self.__location_service
 
     @property

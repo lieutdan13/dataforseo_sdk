@@ -1,16 +1,15 @@
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
-from dataforseo_sdk.api_client.api_client_mixin import APIClientMixin
+from dataforseo_sdk.dfs_service import DFSService
 from dataforseo_sdk.api_client.api_credentials import APICredentials
 
 
-class TestAPIClientMixin(TestCase):
+class TestDFSService(TestCase):
     def test_instantiate__with_credentials(self):
         credentials = MagicMock(spec=APICredentials)
 
-        api_client_mixer = MockAPIClientMixer()
-        api_client_mixer.init_api_client(credentials=credentials)
+        api_client_mixer = DFSService(credentials=credentials)
 
         assert api_client_mixer.credentials == credentials
 
@@ -18,8 +17,7 @@ class TestAPIClientMixin(TestCase):
         username = "username"
         password = "password"
 
-        api_client_mixer = MockAPIClientMixer()
-        api_client_mixer.init_api_client(username=username, password=password)
+        api_client_mixer = DFSService(username=username, password=password)
 
         assert api_client_mixer.credentials.username == username
         assert api_client_mixer.credentials.password == password
@@ -29,20 +27,21 @@ class TestAPIClientMixin(TestCase):
         username = "username_from_config"
         password = "password_from_config"
         mock_config.config = {"api_username": username, "api_password": password}
-        api_client_mixer = MockAPIClientMixer()
+        api_client_mixer = DFSService()
 
         assert api_client_mixer.credentials.username == username
         assert api_client_mixer.credentials.password == password
 
-    @patch("dataforseo_sdk.api_client.api_credentials_factory.Config")
-    def test_instantiate__with_data_dir(self, mock_config):
+    def test_instantiate__with_data_dir(self):
         data_dir = "/tmp/path/to/data"
 
-        api_client_mixer = MockAPIClientMixer()
-        api_client_mixer.init_api_client(data_dir=data_dir)
+        api_client_mixer = DFSService(data_dir=data_dir)
 
         assert api_client_mixer.data_dir == data_dir
 
+    def test_instantiate__with_client(self):
+        client = MagicMock()
 
-class MockAPIClientMixer(APIClientMixin):
-    pass
+        api_client_mixer = DFSService(client=client)
+
+        assert api_client_mixer.client == client
