@@ -9,39 +9,22 @@ class TestDFSService(TestCase):
     def test_instantiate__with_credentials(self):
         credentials = MagicMock(spec=APICredentials)
 
-        api_client_mixer = DFSService(credentials=credentials)
+        dfs_service = DFSService(credentials=credentials)
 
-        assert api_client_mixer.credentials == credentials
+        assert dfs_service.credentials == credentials
 
     def test_instantiate__with_username_and_password(self):
         username = "username"
         password = "password"
 
-        api_client_mixer = DFSService(username=username, password=password)
+        dfs_service = DFSService(username=username, password=password)
 
-        assert api_client_mixer.credentials.username == username
-        assert api_client_mixer.credentials.password == password
-
-    @patch("dataforseo_sdk.api_client.api_credentials_factory.Config")
-    def test_instantiate__without_credentials_uses_from_config(self, mock_config):
-        username = "username_from_config"
-        password = "password_from_config"
-        mock_config.config = {"api_username": username, "api_password": password}
-        api_client_mixer = DFSService()
-
-        assert api_client_mixer.credentials.username == username
-        assert api_client_mixer.credentials.password == password
-
-    def test_instantiate__with_data_dir(self):
-        data_dir = "/tmp/path/to/data"
-
-        api_client_mixer = DFSService(data_dir=data_dir)
-
-        assert api_client_mixer.data_dir == data_dir
+        assert dfs_service.credentials.username == username
+        assert dfs_service.credentials.password == password
 
     def test_instantiate__with_client(self):
         client = MagicMock()
 
-        api_client_mixer = DFSService(client=client)
+        dfs_service = DFSService(client=client)
 
-        assert api_client_mixer.client == client
+        assert dfs_service.client == client

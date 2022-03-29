@@ -13,21 +13,18 @@ class DFSService:
 
     @property
     def credentials(self):
-        if not getattr(self, "_credentials", None):
-            if getattr(self, "_username", None) and getattr(self, "_password", None):
-                self._credentials = (
-                    APICredentialsFactory.credentials_from_username_and_password(
-                        username=self._username, password=self._password
-                    )
-                )
-            else:
-                self._credentials = APICredentialsFactory.credentials_from_config()
+        if not self._credentials:
+            self._credentials = APICredentialsFactory.credentials_from_all_credentials(
+                username=self._username, password=self._password
+            )
         return self._credentials
 
     @property
     def client(self):
-        if not getattr(self, "_client", None):
-            self._client = APIClient(credentials=self.credentials)
+        if not self._client:
+            self._client = APIClient(
+                credentials=self.credentials, data_dir=self.data_dir
+            )
         return self._client
 
     @property
