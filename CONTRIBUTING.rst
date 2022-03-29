@@ -33,7 +33,8 @@ Implement Features
 ~~~~~~~~~~~~~~~~~~
 
 Look through the GitHub issues for features. Anything tagged with "enhancement"
-and "help wanted" is open to whoever wants to implement it.
+and "help wanted" is open to whoever wants to implement it. Also look at the
+TODO section in the README.rst for features.
 
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
@@ -79,7 +80,7 @@ Ready to contribute? Here's how to set up `dataforseo_sdk` for local development
 5. When you're done making changes, check that your changes pass black and the
    tests, including testing other Python versions with tox::
 
-    $ black --check dataforseo_sdk tests
+    $ black --check .
     $ python setup.py test or pytest
     $ tox
 

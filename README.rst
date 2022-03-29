@@ -26,7 +26,25 @@ The DataForSEO Python SDK contains a Python library to interact with APIs provid
 Features
 --------
 
-* TODO
+* Retrieve locations and languages
+* Retrieve competitors for a target domain
+* Retrieve ranked keywords for a target domain
+* Save all API requests as json files
+
+TODO
+----
+* Add DOCSTRINGS to all code
+
+   * Usage for environment variables
+
+   * Usage for
+
+* Build documentation locally
+* Publish documentation
+* Publish package to PyPi
+* Setup integration with TravisCI or another CI/CD platform
+* Simplify the API Client classes
+* Add functionality to the CLI
 
 Credits
 -------
