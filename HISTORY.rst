@@ -15,6 +15,8 @@ History
 
    * DFS_LOCALE
 
+   * DFS_API_DOMAIN
+
 * Add feature to save requests as files
 * Add service to get locations and languages
 * Add service to get domain competitors
