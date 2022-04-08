@@ -16,7 +16,7 @@ DataForSEO SDK
 
 
 
-The DataForSEO Python SDK contains a Python library to interact with APIs provided by DataForSEO (https://dataforseo.com/).
+The DataForSEO Python SDK contains a Python library to interact with the `DataForSEO <link https://dataforseo.com/>`_ APIs.
 
 
 * Free software: MIT license
@@ -41,7 +41,6 @@ TODO
 
    * Document classes
 
-* Build documentation locally
 * Publish documentation
 * Publish package to PyPi
 * Setup integration with TravisCI or another CI/CD platform

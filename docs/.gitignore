@@ -1,0 +1,10 @@
+_static
+_build
+*.rst
+!authors.rst
+!contributing.rst
+!history.rst
+!index.rst
+!installation.rst
+!readme.rst
+!usage.rst

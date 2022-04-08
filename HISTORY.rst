@@ -3,7 +3,7 @@ History
 =======
 
 0.1.0 (unpublished)
-------------------
+-------------------
 
 * First release
 * Add an API client to wrap the Data for SEO RestClient

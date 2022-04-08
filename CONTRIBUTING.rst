@@ -41,7 +41,8 @@ Write Documentation
 
 DataForSEO SDK could always use more documentation, whether as part of the
 official DataForSEO SDK docs, in docstrings, or even on the web in blog posts,
-articles, and such.
+articles, and such. See the Getting Started section below for instructions on
+how to build the documentation locally.
 
 Submit Feedback
 ~~~~~~~~~~~~~~~
@@ -93,6 +94,20 @@ Ready to contribute? Here's how to set up `dataforseo_sdk` for local development
     $ git push origin name-of-your-bugfix-or-feature
 
 7. Submit a pull request through the GitHub website.
+
+Building the Documentation
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After making contributions to documentation, it's important to build and view the
+changes locally, before submitting a pull request.
+
+Here are the instructions on how to build and preview the documentation.
+
+1. Change directory into the root of the project
+2. Run `pip install -r requirements_dev.txt` to install the development requirements
+3. Run `make docs`
+4. A browser should pop-up with the built docs. If not, you can open your browser of
+   choice and navigate to `docs/_build/html/index.html`.
 
 Pull Request Guidelines
 -----------------------

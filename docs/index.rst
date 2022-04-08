@@ -1,5 +1,5 @@
 Welcome to DataForSEO SDK's documentation!
-======================================
+==========================================
 
 .. toctree::
    :maxdepth: 2
