@@ -17,10 +17,9 @@
 # relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
 #
+from datetime import date
 import os
 import sys
-
-import sphinx_rtd_theme
 
 sys.path.insert(0, os.path.abspath(".."))
 
@@ -35,8 +34,11 @@ import dataforseo_sdk
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
+    "autodocsumm",
     "sphinx.ext.autodoc",
-    "sphinx.ext.viewcode",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.todo",
+    # "sphinx.ext.viewcode",
     "sphinx_rtd_theme",
 ]
 
@@ -54,7 +56,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "DataForSEO SDK"
-copyright = "2022, Daniel Schaefer"
+copyright = f"{date.today().year}, Daniel Schaefer"
 author = "Daniel Schaefer"
 
 # The version info for the project you're documenting, acts as replacement
@@ -76,13 +78,19 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["venv/*", "_build", "Thumbs.db", ".DS_Store"]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "sphinx"
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
+
+nitpicky = True
+smartquotes = False
+add_module_names = False
+autodoc_inherit_docstrings = False
+autodoc_typehints = "none"
 
 
 # -- Options for HTML output -------------------------------------------

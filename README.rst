@@ -46,6 +46,7 @@ TODO
 * Setup integration with TravisCI or another CI/CD platform
 * Simplify the API Client classes
 * Add functionality to the CLI
+* Move credentials env vars to config
 
 Credits
 -------

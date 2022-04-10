@@ -8,10 +8,11 @@ Welcome to DataForSEO SDK's documentation!
    readme
    installation
    usage
-   modules
    contributing
    authors
    history
+... modules
+
 
 Indices and tables
 ==================
