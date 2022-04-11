@@ -8,7 +8,6 @@ safety==1.10.3
 Sphinx==2.4.5
 sphinx_rtd_theme==1.0.0
 twine==1.15.0
-
 pytest==6.2.5
 pytest-cov==3.0.0
 black==22.1.0
