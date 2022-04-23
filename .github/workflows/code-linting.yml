@@ -5,10 +5,16 @@ on:
     pull_request:
         branches: [main]
 jobs:
-    build:
+    code-linting:
         runs-on: self-hosted
         steps:
             - name: "Checkout Repository"
               uses: actions/checkout@v3
+            - name: Set up Python
+              uses: actions/setup-python@v3
+              env:
+                  AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache
+            - name: Install Dependencies
+              run: pip install .[lint]
             - name: "Black Format Check"
-              uses: psf/black@stable
+              run: black --check
