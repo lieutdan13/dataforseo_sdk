@@ -10,7 +10,7 @@ on:
         branches: [main]
 
 jobs:
-    build:
+    unit-tests:
         runs-on: self-hosted
         strategy:
             fail-fast: false
