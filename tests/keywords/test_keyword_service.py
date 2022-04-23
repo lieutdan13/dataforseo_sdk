@@ -31,6 +31,8 @@ class TestKeywordService(TestCase):
 
         target_domain = "afishingaddiction.com"
         keyword_service = KeywordService(client=mock_rest_client)
+        keyword_service._location_code = 2840
+        keyword_service._language_code = "en"
 
         ranked_keywords = keyword_service.ranked_keywords(target_domain=target_domain)
 

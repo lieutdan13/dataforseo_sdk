@@ -954,6 +954,8 @@ class TestCompetitorService(TestCase):
 
         target_domain = "afishingaddiction.com"
         competitor_service = CompetitorService(client=mock_rest_client)
+        competitor_service._location_code = 2840
+        competitor_service._language_code = "en"
 
         domain_competitors = competitor_service.domain_competitors(
             target_domain=target_domain
