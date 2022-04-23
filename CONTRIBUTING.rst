@@ -66,11 +66,13 @@ Ready to contribute? Here's how to set up `dataforseo_sdk` for local development
 
     $ git clone git@github.com:your_name_here/dataforseo_sdk.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Install your local copy into a virtualenv. This is how you set up your fork for local development::
 
-    $ mkvirtualenv dataforseo_sdk
     $ cd dataforseo_sdk/
-    $ python setup.py develop
+    $ python -m venv venv
+    $ source venv/Scripts/activate
+    $ pip install .
+    $ pip install .[test]
 
 4. Create a branch for local development::
 
@@ -81,8 +83,9 @@ Ready to contribute? Here's how to set up `dataforseo_sdk` for local development
 5. When you're done making changes, check that your changes pass black and the
    tests, including testing other Python versions with tox::
 
-    $ black --check .
-    $ python setup.py test or pytest
+    $ black --check dataforseo_sdk tests
+    $ pytest
+    $ safety
     $ tox
 
    To get black and tox, just pip install them into your virtualenv.
