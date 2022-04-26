@@ -12,4 +12,3 @@ Submodules
 .. automodule:: dataforseo_sdk.competitors.competitor_service
    :members:
    :show-inheritance:
-

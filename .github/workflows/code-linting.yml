@@ -17,4 +17,4 @@ jobs:
             - name: Install Dependencies
               run: pip install .[lint]
             - name: "Black Format Check"
-              run: black --check .
+              run: make lint

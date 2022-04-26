@@ -12,4 +12,3 @@ Submodules
 .. automodule:: dataforseo_sdk.keywords.keyword_service
    :members:
    :show-inheritance:
-
