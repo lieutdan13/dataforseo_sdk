@@ -1,6 +1,6 @@
 from http.client import HTTPResponse
 import os
-import sys
+import tempfile
 from unittest import TestCase
 from unittest.mock import MagicMock, Mock, patch
 
@@ -9,9 +9,7 @@ from dataforseo_sdk.api_client.rest_client import RestClient
 
 class TestRestClient(TestCase):
     def setUp(self) -> None:
-        self.data_dir = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)), "data"
-        )
+        self.data_dir = tempfile.gettempdir()
         self.response_file = None
         return super().setUp()
 

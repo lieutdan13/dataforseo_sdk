@@ -66,11 +66,13 @@ Ready to contribute? Here's how to set up `dataforseo_sdk` for local development
 
     $ git clone git@github.com:your_name_here/dataforseo_sdk.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Install your local copy into a virtualenv. This is how you set up your fork for local development::
 
-    $ mkvirtualenv dataforseo_sdk
     $ cd dataforseo_sdk/
-    $ python setup.py develop
+    $ python -m venv venv
+    $ source venv/Scripts/activate
+    $ pip install .
+    $ pip install .[test]
 
 4. Create a branch for local development::
 
@@ -81,8 +83,9 @@ Ready to contribute? Here's how to set up `dataforseo_sdk` for local development
 5. When you're done making changes, check that your changes pass black and the
    tests, including testing other Python versions with tox::
 
-    $ black --check .
-    $ python setup.py test or pytest
+    $ black --check dataforseo_sdk tests
+    $ pytest
+    $ safety
     $ tox
 
    To get black and tox, just pip install them into your virtualenv.
@@ -118,8 +121,8 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 3.5, 3.6, 3.7 and 3.8, and for PyPy. Check
-   https://travis-ci.com/lieutdan13/dataforseo_sdk/pull_requests
+3. The pull request should work for Python 3.7, 3.8, 3.9, and 3.10, and for PyPy. Check
+   https://github.com/lieutdan13/dataforseo_sdk/pulls
    and make sure that the tests pass for all supported Python versions.
 
 Tips

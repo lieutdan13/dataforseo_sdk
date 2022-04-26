@@ -17,4 +17,3 @@ Submodules
 .. automodule:: dataforseo_sdk.locations.location_service
    :members:
    :show-inheritance:
-

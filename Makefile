@@ -55,6 +55,9 @@ lint/black: ## check style with black
 
 lint: lint/black ## check style
 
+dependency-check:
+	safety check --full-report --file setup.cfg
+
 test: ## run tests quickly with the default Python
 	pytest
 

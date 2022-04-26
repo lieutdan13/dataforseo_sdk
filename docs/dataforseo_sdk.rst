@@ -9,6 +9,7 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
    dataforseo_sdk.api_client
    dataforseo_sdk.competitors
@@ -37,4 +38,3 @@ Submodules
 .. automodule:: dataforseo_sdk.dfs_service
    :members:
    :show-inheritance:
-
